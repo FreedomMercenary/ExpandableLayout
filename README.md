@@ -258,17 +258,24 @@ I recommend you use such a interpolator for child views in the expandable layout
 
 ### Gradle
 
+Add the Github repository to `settings.gradle`
+
+```groovy
+sourceControl {
+    gitRepository(URI.create("https://github.com/FreedomMercenary/ExpandableLayout.git")) {
+        producesModule("com.github.aakira:expandable-layout")
+    }
+}
+```
+
 Add the dependency in your `build.gradle`
 
 ```groovy
-buildscript {
-	repositories {
-		jcenter()
-	}
-}
 
-dependencies {
-	compile 'com.github.aakira:expandable-layout:1.6.0@aar'
+implementation('com.github.aakira:expandable-layout') {
+    version {
+        branch = 'master'
+    }
 }
 ```
 

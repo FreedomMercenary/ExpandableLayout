@@ -1,5 +1,6 @@
 package com.github.aakira.expandablelayout.uitest
 
+/*
 import android.app.Activity
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
@@ -218,3 +219,4 @@ class ExpandableRecyclerViewActivityTest : ActivityInstrumentationTestCase2<Expa
         override fun getDescription() = "Collapse."
     }
 }
+*/

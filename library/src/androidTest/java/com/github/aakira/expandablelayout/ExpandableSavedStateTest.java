@@ -2,7 +2,6 @@ package com.github.aakira.expandablelayout;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.test.runner.AndroidJUnit4;
 import android.view.AbsSavedState;
 import android.view.View;
 
@@ -11,6 +10,8 @@ import org.junit.runner.RunWith;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 @RunWith(AndroidJUnit4.class)
 public class ExpandableSavedStateTest {

@@ -1,49 +1,35 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion COMPILE_SDK_VERSION as int
-    buildToolsVersion BUILD_TOOLS_VERSION
+    compileSdk COMPILE_SDK_VERSION as int
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 
     defaultConfig {
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
-        versionCode VERSION_CODE as int
-        versionName VERSION_NAME
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    namespace 'com.github.aakira.expandablelayout'
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:$SUPPORT_APP_COMPAT_VERSION"
-    androidTestCompile "com.android.support:support-annotations:$SUPPORT_APP_COMPAT_VERSION"
-    androidTestCompile "com.android.support.test:runner:$SUPPORT_TEST_VERSION"
-    androidTestCompile "com.android.support.test:rules:$SUPPORT_TEST_VERSION"
-}
-
-def getBintrayUserProperty() {
-    return hasProperty('bintrayUser') ? bintrayUser : ""
-}
-
-def getBintrayApiKeyProperty() {
-    return hasProperty('bintrayApiKey') ? bintrayApiKey : ""
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
+    implementation ("androidx.appcompat:appcompat:$SUPPORT_APP_COMPAT_VERSION") {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
+    }
+    testImplementation "androidx.annotation:annotation:$SUPPORT_APP_COMPAT_VERSION"
+    testImplementation "androidx.test:runner:$SUPPORT_TEST_VERSION"
+    testImplementation "androidx.test:rules:$SUPPORT_TEST_VERSION"
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'junit:junit:4.13.2'
 }
 
 publish {
-    userOrg = POM_DEVELOPER_ID
-    repoName = 'maven'
-    groupId = GROUP
-    artifactId = ARTIFACT_ID
-    publishVersion = VERSION_NAME
-    licences = ['Apache-2.0']
-    desc = POM_DESCRIPTION
-    website = POM_URL
-    issueTracker = ISSUE_URL
-    repository = POM_SCM_URL
-    autoPublish = false
-    bintrayUser = bintrayUserProperty
-    bintrayKey = bintrayApiKeyProperty
-    dryRun = false
-    publications = ['maven']
 }

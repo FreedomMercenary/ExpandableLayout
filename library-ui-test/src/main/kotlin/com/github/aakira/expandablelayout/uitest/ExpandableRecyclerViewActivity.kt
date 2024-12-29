@@ -4,10 +4,6 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +11,10 @@ import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.aakira.expandablelayout.ExpandableLayout
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter
 import com.github.aakira.expandablelayout.ExpandableLinearLayout
@@ -95,9 +95,11 @@ class ExpandableRecyclerViewActivity : AppCompatActivity() {
             holder.setIsRecyclable(false)
             holder.title.text = item.title
             holder.description.text = item.description
-            holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1))
+            context?.let {
+                holder.itemView.setBackgroundColor(ContextCompat.getColor(it, item.colorId1))
+                holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(it, item.colorId2))
+            }
             holder.expandableLayout.setInRecyclerView(true)
-            holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2))
             holder.expandableLayout.setInterpolator(LinearInterpolator())
             holder.expandableLayout.isExpanded = expandState.get(position)
             holder.expandableLayout.setListener(object : ExpandableLayoutListenerAdapter() {

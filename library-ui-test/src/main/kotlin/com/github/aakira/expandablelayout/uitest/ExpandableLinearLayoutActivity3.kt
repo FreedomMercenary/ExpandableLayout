@@ -1,10 +1,12 @@
 package com.github.aakira.expandablelayout.uitest
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.github.aakira.expandablelayout.ExpandableLinearLayout
-import rx.subscriptions.CompositeSubscription
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlin.properties.Delegates
+
 
 /**
  * test for [com.github.aakira.expandablelayout.ExpandableLinearLayout#initlayout]
@@ -15,7 +17,8 @@ import kotlin.properties.Delegates
 class ExpandableLinearLayoutActivity3 : AppCompatActivity() {
 
     private var expandableLayout: ExpandableLinearLayout by Delegates.notNull()
-    private val subscriptions: CompositeSubscription = CompositeSubscription()
+    private val composite: CompositeDisposable = CompositeDisposable()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +26,9 @@ class ExpandableLinearLayoutActivity3 : AppCompatActivity() {
         supportActionBar?.title = ExpandableLinearLayoutActivity::class.java.simpleName
 
         expandableLayout = findViewById(R.id.expandableLayout) as ExpandableLinearLayout
-        findViewById(R.id.expandButton)?.setOnClickListener { expandableLayout.toggle() }
-        findViewById(R.id.moveChildButton)?.setOnClickListener { expandableLayout.moveChild(0) }
-        findViewById(R.id.moveChildButton2)?.setOnClickListener { expandableLayout.moveChild(1) }
+        findViewById<View>(R.id.expandButton)?.setOnClickListener { expandableLayout.toggle() }
+        findViewById<View>(R.id.moveChildButton)?.setOnClickListener { expandableLayout.moveChild(0) }
+        findViewById<View>(R.id.moveChildButton2)?.setOnClickListener { expandableLayout.moveChild(1) }
 
         // uncomment if you want to check the #ExpandableLayout.initLayout()
 //        val child1 = findViewById(R.id.child1) as TextView
@@ -44,7 +47,7 @@ class ExpandableLinearLayoutActivity3 : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        subscriptions.unsubscribe()
+        composite.dispose()
         super.onDestroy()
     }
 }

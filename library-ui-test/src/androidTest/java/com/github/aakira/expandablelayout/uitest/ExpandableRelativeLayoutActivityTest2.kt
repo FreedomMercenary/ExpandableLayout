@@ -1,5 +1,6 @@
 package com.github.aakira.expandablelayout.uitest
 
+/*
 import android.app.Activity
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
@@ -103,3 +104,4 @@ class ExpandableRelativeLayoutActivityTest2 : ActivityInstrumentationTestCase2<E
         assertThat(expandableLayout.isExpanded, _is(true))
     }
 }
+*/

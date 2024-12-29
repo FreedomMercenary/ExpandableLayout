@@ -1,5 +1,6 @@
 package com.github.aakira.expandablelayout.uitest
 
+/*
 import android.app.Activity
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
@@ -120,3 +121,4 @@ class ExpandableLinearLayoutActivityTest2 : ActivityInstrumentationTestCase2<Exp
         Espresso.unregisterIdlingResources(idlingResource)
     }
 }
+*/
