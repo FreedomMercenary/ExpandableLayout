@@ -17,6 +17,26 @@ android {
     }
 
     namespace 'com.github.aakira.expandablelayout'
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = "$GROUP"
+                artifactId = "$ARTIFACT_ID"
+                version = "$VERSION_NAME"
+            }
+        }
+    }
 }
 
 dependencies {
