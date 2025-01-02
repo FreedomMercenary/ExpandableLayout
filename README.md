@@ -256,26 +256,26 @@ I recommend you use such a interpolator for child views in the expandable layout
 
 ## Setup
 
-### Gradle
+### Gradle (Android Studio)
+You can add this Android library to your Gradle dependencies.
 
-Add the Github repository to `settings.gradle`
+To do so, add the Jitpack repository to your project's `build.gradle`
 
 ```groovy
-sourceControl {
-    gitRepository(URI.create("https://github.com/FreedomMercenary/ExpandableLayout.git")) {
-        producesModule("com.github.aakira:expandable-layout")
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
     }
 }
 ```
 
-Add the dependency in your `build.gradle`
+and add the following to your app module's `build.gradle` file:
 
 ```groovy
-
-implementation('com.github.aakira:expandable-layout') {
-    version {
-        branch = 'master'
-    }
+dependencies {
+    ...
+    implementation 'com.github.FreedomMercenary:ExpandableLayout:v1.6.2'
 }
 ```
 
